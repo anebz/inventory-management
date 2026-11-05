@@ -93,54 +93,60 @@ const selectLanguage = (locale) => {
   position: relative;
 }
 
+/* Lives in the dark sidebar — light-on-dark trigger */
 .language-button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.875rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;
-  font-size: 0.875rem;
-  color: #334155;
+  font-size: var(--text-sm);
+  color: var(--sidebar-text);
+  width: 100%;
 }
 
 .language-button:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--sidebar-hover);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--sidebar-text-active);
 }
 
 .globe-icon {
-  color: #64748b;
+  color: var(--sidebar-text);
   flex-shrink: 0;
 }
 
 .language-label {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .chevron {
-  color: #64748b;
+  color: var(--sidebar-text);
   transition: transform 0.2s ease;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .chevron-open {
   transform: rotate(180deg);
 }
 
+/* Dropdown pops upward (footer sits at bottom of sidebar) and stays light-themed */
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  bottom: calc(100% + 0.5rem);
   right: 0;
   min-width: 160px;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   z-index: 1000;
   overflow: hidden;
 }
@@ -158,18 +164,18 @@ const selectLanguage = (locale) => {
   cursor: pointer;
   transition: background 0.15s ease;
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   font-weight: 500;
-  color: #334155;
+  color: var(--text-secondary);
 }
 
 .dropdown-item:hover {
-  background: #f8fafc;
+  background: var(--surface-hover);
 }
 
 .dropdown-item.active {
-  background: #eff6ff;
-  color: #2563eb;
+  background: var(--status-info-soft);
+  color: var(--status-info);
 }
 
 .language-name {
@@ -177,7 +183,24 @@ const selectLanguage = (locale) => {
 }
 
 .check-icon {
-  color: #2563eb;
+  color: var(--accent);
   flex-shrink: 0;
+}
+
+/* Icon-rail mode: sidebar collapses, keep only the globe icon centered */
+@media (max-width: 900px) {
+  .language-button {
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+  .language-label,
+  .chevron {
+    display: none;
+  }
+
+  .dropdown-menu {
+    right: -16px;
+  }
 }
 </style>

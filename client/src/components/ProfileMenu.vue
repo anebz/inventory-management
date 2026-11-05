@@ -120,22 +120,24 @@ const handleLogout = () => {
   position: relative;
 }
 
+/* Lives in the dark sidebar — light-on-dark trigger */
 .profile-button {
   display: flex;
   align-items: center;
   gap: 0.625rem;
   padding: 0.5rem 0.875rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;
+  width: 100%;
 }
 
 .profile-button:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--sidebar-hover);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .avatar {
@@ -150,32 +152,43 @@ const handleLogout = () => {
   font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.025em;
+  flex-shrink: 0;
 }
 
 .profile-name {
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   font-weight: 500;
-  color: #0f172a;
+  color: var(--sidebar-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-button:hover .profile-name {
+  color: var(--sidebar-text-active);
 }
 
 .chevron {
-  color: #64748b;
+  color: var(--sidebar-text);
   transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .chevron-open {
   transform: rotate(180deg);
 }
 
+/* Dropdown pops upward (menu sits at bottom of sidebar) and stays light-themed */
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  bottom: calc(100% + 0.5rem);
   right: 0;
   min-width: 280px;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   z-index: 1000;
   overflow: hidden;
 }
@@ -185,7 +198,7 @@ const handleLogout = () => {
   display: flex;
   gap: 0.875rem;
   align-items: center;
-  background: #f8fafc;
+  background: var(--surface-hover);
 }
 
 .avatar-large {
@@ -210,14 +223,14 @@ const handleLogout = () => {
 
 .user-name {
   font-weight: 600;
-  color: #0f172a;
-  font-size: 0.938rem;
+  color: var(--text-primary);
+  font-size: var(--text-base);
   margin-bottom: 0.25rem;
 }
 
 .user-email {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -225,7 +238,7 @@ const handleLogout = () => {
 
 .dropdown-divider {
   height: 1px;
-  background: #e2e8f0;
+  background: var(--border);
   margin: 0.5rem 0;
 }
 
@@ -241,41 +254,58 @@ const handleLogout = () => {
   cursor: pointer;
   transition: background 0.15s ease;
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: var(--text-sm);
   font-weight: 500;
-  color: #334155;
+  color: var(--text-secondary);
 }
 
 .dropdown-item:hover {
-  background: #f8fafc;
+  background: var(--surface-hover);
 }
 
 .dropdown-item svg {
-  color: #64748b;
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 
 .dropdown-item.logout {
-  color: #dc2626;
+  color: var(--status-danger);
 }
 
 .dropdown-item.logout svg {
-  color: #dc2626;
+  color: var(--status-danger);
 }
 
 .dropdown-item.logout:hover {
-  background: #fef2f2;
+  background: var(--status-danger-soft);
 }
 
 .task-badge {
   margin-left: auto;
-  background: #2563eb;
+  background: var(--accent);
   color: white;
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   font-weight: 600;
   padding: 0.125rem 0.5rem;
-  border-radius: 12px;
+  border-radius: 999px;
   min-width: 20px;
   text-align: center;
+}
+
+/* Icon-rail mode: sidebar collapses, keep only the avatar centered */
+@media (max-width: 900px) {
+  .profile-button {
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+  .profile-name,
+  .chevron {
+    display: none;
+  }
+
+  .dropdown-menu {
+    right: -16px;
+  }
 }
 </style>
