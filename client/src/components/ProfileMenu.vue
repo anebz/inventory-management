@@ -144,7 +144,8 @@ const handleLogout = () => {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  /* Accent gradient: dark endpoint derived via color-mix (no raw hex in token system) */
+  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, var(--text-primary)) 100%);
   color: white;
   display: flex;
   align-items: center;
@@ -205,7 +206,8 @@ const handleLogout = () => {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  /* Accent gradient: dark endpoint derived via color-mix (no raw hex in token system) */
+  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, var(--text-primary)) 100%);
   color: white;
   display: flex;
   align-items: center;

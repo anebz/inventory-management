@@ -564,7 +564,10 @@ export default {
 
 /* Cost-flow category colors mapped to nearest design tokens */
 .legend-dot.procurement { background: var(--status-info); }
-.legend-dot.operational { background: var(--accent); }
+/* Operational was violet (#8b5cf6); no violet token exists, so it maps to slate
+   (--text-secondary) to stay distinguishable from procurement (--status-info).
+   Matches the operational mapping used in CostDetailModal. */
+.legend-dot.operational { background: var(--text-secondary); }
 .legend-dot.labor { background: var(--status-success); }
 .legend-dot.overhead { background: var(--status-warning); }
 .legend-dot.revenue-color { background: var(--text-primary); }
@@ -680,7 +683,7 @@ export default {
 
 /* Stacked-bar category colors mirror the legend dots */
 .bar-segment.procurement { background: var(--status-info); }
-.bar-segment.operational { background: var(--accent); }
+.bar-segment.operational { background: var(--text-secondary); }
 .bar-segment.labor { background: var(--status-success); }
 .bar-segment.overhead { background: var(--status-warning); }
 
