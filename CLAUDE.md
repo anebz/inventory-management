@@ -42,6 +42,12 @@ cd client
 npm install && npm run dev
 ```
 
+> ⚠️ **Always check if the servers are already running before starting them again.** Probe `http://localhost:8001` (API) and `http://localhost:3000` (frontend) first — e.g. `curl -s -o /dev/null -w "%{http_code}" http://localhost:8001/api/dashboard/summary`. Only start a server if its probe fails. This avoids duplicate processes, port conflicts, and stale dev servers.
+
+## Coding Rules
+
+- **Always document non-obvious logic changes with comments.** When writing or modifying logic that isn't self-evident (workarounds, magic values, edge-case handling, non-obvious invariants), add a comment explaining the *why*, not just the *what*.
+
 ## Key Patterns
 
 **Filter System**: 4 filters (Time Period, Warehouse, Category, Order Status) apply to all data via query params
